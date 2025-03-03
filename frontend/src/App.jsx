@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // pages & components
+import Navbar from "./components/Navbar";
 import Home from "./pages/HomePage";
 import AddJobPage from "./pages/AddJobPage";
-import Navbar from "./components/Navbar";
-import NotFoundPage from "./pages/NotFoundPage"
+import JobPage from "./pages/JobPage";
+import EditJobPage from "./pages/EditJobPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
@@ -20,6 +22,8 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/add-job" element={<AddJobPage />} />
+              <Route path="/jobs/:id" element={<JobPage />} />
+              <Route path="/edit-job/:id" element={<EditJobPage />} />
               <Route path='*' element={<NotFoundPage />} />
             </Routes>
           </div>
@@ -27,5 +31,5 @@ const App = () => {
       </div>
     );
   }
-  
+
   export default App;
