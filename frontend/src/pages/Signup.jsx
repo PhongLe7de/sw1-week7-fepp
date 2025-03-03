@@ -12,7 +12,7 @@ const Signup = () => {
   const dateOfBirth = useField("date");
   const membershipStatus = useField("text");
 
-  const { signup, error } = useSignup("/api/users/signup");
+  const { signup, error } = useSignup("http://localhost:4000/api/users/signup");
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
