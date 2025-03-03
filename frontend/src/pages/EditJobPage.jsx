@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-const EditJobPage = () => {
-  const [job, setJob] = useState(null); // Initialize job state
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+const EditJobPage = ({setJobEdited}) => {
+  const [job, setJob] = useState(null); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
   const { id } = useParams();
 
-  // Declare state variables for form fields
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
@@ -34,7 +33,7 @@ const EditJobPage = () => {
     }
   };
 
-  // Fetch job data
+  
   useEffect(() => {
     const fetchJob = async () => {
       try {
@@ -43,9 +42,7 @@ const EditJobPage = () => {
           throw new Error("Network response was not ok");
         }
         const data = await res.json();
-        setJob(data); // Set the job data
-
-        // Initialize form fields with fetched job data
+        setJob(data); 
         setTitle(data.title);
         setType(data.type);
         setDescription(data.description);
@@ -56,14 +53,14 @@ const EditJobPage = () => {
         console.error("Failed to fetch job:", error);
         setError(error.message);
       } finally {
-        setLoading(false); // Stop loading after fetch
+        setLoading(false); 
       }
     };
 
     fetchJob();
   }, [id]);
 
-  // Handle form submission
+  
   const submitForm = async (e) => {
     e.preventDefault();
 
@@ -81,10 +78,10 @@ const EditJobPage = () => {
 
     const success = await updateJob(updatedJob);
     if (success) {
-      // toast.success("Job Updated Successfully");
+      setJobEdited(true)
       navigate(`/jobs/${id}`);
     } else {
-      // toast.error("Failed to update the job");
+      
     }
   };
 

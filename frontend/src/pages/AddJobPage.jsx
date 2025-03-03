@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const AddJobPage = () => {
+const AddJobPage = ({setJobAdded}) => {
   const [title, setTitle] = useState("");
   const [type, setType] = useState("Full-Time");
   const [description, setDescription] = useState("");
@@ -52,6 +52,7 @@ const AddJobPage = () => {
     const success = await addJob(newJob);
     if (success) {
       console.log("Job Added Successfully");
+      setJobAdded(true);
       navigate("/");
     } else {
       console.error("Failed to add the job");

@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 const JobPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -51,6 +51,10 @@ const JobPage = () => {
     navigate("/");
   };
 
+  const onEdit = (jobId) => {
+    console.log(jobId);
+  };
+
   return (
     <div className="job-preview">
       {loading ? (
@@ -66,6 +70,11 @@ const JobPage = () => {
           <p>Email: {job.company.contactEmail}</p>
           <p>Phone: {job.company.contactPhone}</p>
           <button onClick={() => onDeleteClick(job._id)}>delete</button>
+
+          <button>
+            <Link to={`/edit-job/${job.id}`}>Edit Job</Link>
+          </button>
+
         </>
       )}
     </div>

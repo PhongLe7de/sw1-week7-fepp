@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import JobListings from "../components/JobListings";
 
-const Home = () => {
+const Home = ({jobEdited, jobAdded}) => {
   const [jobs, setJobs] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
@@ -22,9 +22,8 @@ const Home = () => {
         setError(err.message);
       }
     };
-    // setTimeout(() => {fetchJobs();}, 1000); // Delay of 1 second
     fetchJobs();
-  }, []);
+  }, [jobEdited, jobAdded]);
 
   return (
     <div className="home">
